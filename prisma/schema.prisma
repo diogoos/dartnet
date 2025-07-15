@@ -22,18 +22,27 @@ model User {
   tradition String
   img       String?
 
-  club   Club?  @relation(fields: [clubId], references: [id])
-  clubId Int?
-  posts  Post[]
+  clubs ClubMembership[]
+  posts Post[]
 }
 
 model Club {
-  id          Int     @id @default(autoincrement())
+  id          Int              @id @default(autoincrement())
   name        String
   description String
   img         String?
-  members     User[]
+  members     ClubMembership[]
   posts       Post[]
+}
+
+model ClubMembership {
+  user     User     @relation(fields: [userId], references: [id])
+  userId   Int
+  club     Club     @relation(fields: [clubId], references: [id])
+  clubId   Int
+  joinedAt DateTime @default(now()) // use to show "member for x years"
+
+  @@id([userId, clubId])
 }
 
 model Post {

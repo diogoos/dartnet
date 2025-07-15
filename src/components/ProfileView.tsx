@@ -20,9 +20,9 @@ export default function ProfileView({ user }: { user: User }) {
         <CardTitle className="text-2xl font-semibold">{user.name}</CardTitle>
         <CardDescription className="text-lg text-muted-foreground">{user.quote}</CardDescription>
 
-        { user.role.length > 0 &&
+        { user.roles.length > 0 &&
             <div className="flex flex-row gap-2">
-              { user.role.map(role => <Button key={role} className="bg-teal-800">{role}</Button>) }
+              { user.roles.map(role  => <Button key={role} className="bg-teal-800">{role}</Button>) }
             </div>
         }
       </CardHeader>

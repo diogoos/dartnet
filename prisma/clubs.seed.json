@@ -1,0 +1,17 @@
+[
+  {
+    "name": "DALI Lab",
+    "description": "Where students design & build mobile applications, websites, virtual & augmented reality, digital installations, and more.",
+    "img": "/dali.jpeg"
+  },
+  {
+    "name": "Brazil Society",
+    "description": "The home of Brazil at Dartmouth",
+    "img": "/dbs.png"
+  },
+  {
+    "name": "Outing Club",
+    "description": "Dartmouth Outdoors creates opportunities for the Dartmouth community to explore and enjoy the amazing natural landscape of New England.",
+    "img": "/doc.png"
+  }
+]

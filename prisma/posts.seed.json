@@ -1,0 +1,494 @@
+[
+  {
+    "userId": 1,
+    "clubId": 1,
+    "text": "just pushed code with zero warnings. feels illegal.",
+    "date": "2025-07-14T10:55:00Z"
+  },
+  {
+    "userId": 1,
+    "clubId": 1,
+    "text": "learning typescript with lo-fi beats in the background. not bad at all.",
+    "date": "2025-07-15T16:15:00Z"
+  },
+  {
+    "userId": 2,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-08T19:08:00Z"
+  },
+  {
+    "userId": 2,
+    "clubId": 1,
+    "text": "code reviews are just love letters written in passive voice.",
+    "date": "2025-07-02T10:42:00Z"
+  },
+  {
+    "userId": 3,
+    "clubId": 1,
+    "text": "sometimes staring at the screen *is* progress.",
+    "date": "2025-07-13T18:13:00Z"
+  },
+  {
+    "userId": 3,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-10T05:19:00Z"
+  },
+  {
+    "userId": 4,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-12T01:24:00Z"
+  },
+  {
+    "userId": 4,
+    "clubId": 1,
+    "text": "accidentally learned recursion by trying to make a joke work.",
+    "date": "2025-07-09T05:22:00Z"
+  },
+  {
+    "userId": 5,
+    "clubId": 1,
+    "text": "still can\u2019t believe \u2018undefined is not a function\u2019 ruined my afternoon.",
+    "date": "2025-07-11T02:28:00Z"
+  },
+  {
+    "userId": 5,
+    "clubId": 1,
+    "text": "accidentally learned recursion by trying to make a joke work.",
+    "date": "2025-07-12T08:42:00Z"
+  },
+  {
+    "userId": 6,
+    "clubId": 1,
+    "text": "accidentally learned recursion by trying to make a joke work.",
+    "date": "2025-07-03T02:10:00Z"
+  },
+  {
+    "userId": 6,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-05T21:33:00Z"
+  },
+  {
+    "userId": 7,
+    "clubId": 1,
+    "text": "tiny PRs, big wins. keeping it mellow.",
+    "date": "2025-07-03T23:31:00Z"
+  },
+  {
+    "userId": 7,
+    "clubId": 1,
+    "text": "just pushed code with zero warnings. feels illegal.",
+    "date": "2025-07-01T14:18:00Z"
+  },
+  {
+    "userId": 8,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-07T08:24:00Z"
+  },
+  {
+    "userId": 8,
+    "clubId": 1,
+    "text": "pair coded with someone and we solved it in 20 min. ultimate cozy win.",
+    "date": "2025-07-15T05:54:00Z"
+  },
+  {
+    "userId": 9,
+    "clubId": 1,
+    "text": "code reviews are just love letters written in passive voice.",
+    "date": "2025-07-10T16:31:00Z"
+  },
+  {
+    "userId": 9,
+    "clubId": 1,
+    "text": "sometimes staring at the screen *is* progress.",
+    "date": "2025-07-12T13:18:00Z"
+  },
+  {
+    "userId": 10,
+    "clubId": 1,
+    "text": "code reviews are just love letters written in passive voice.",
+    "date": "2025-07-07T17:44:00Z"
+  },
+  {
+    "userId": 10,
+    "clubId": 1,
+    "text": "writing code with matcha and ambient rain sounds hits different.",
+    "date": "2025-07-04T08:51:00Z"
+  },
+  {
+    "userId": 11,
+    "clubId": 1,
+    "text": "accidentally learned recursion by trying to make a joke work.",
+    "date": "2025-07-07T00:52:00Z"
+  },
+  {
+    "userId": 11,
+    "clubId": 1,
+    "text": "forgot a semicolon. learned a life lesson.",
+    "date": "2025-07-08T17:49:00Z"
+  },
+  {
+    "userId": 12,
+    "clubId": 1,
+    "text": "debugging with a friend feels like solving mysteries but softer.",
+    "date": "2025-07-10T15:44:00Z"
+  },
+  {
+    "userId": 12,
+    "clubId": 1,
+    "text": "writing code with matcha and ambient rain sounds hits different.",
+    "date": "2025-07-13T06:18:00Z"
+  },
+  {
+    "userId": 13,
+    "clubId": 1,
+    "text": "just pushed code with zero warnings. feels illegal.",
+    "date": "2025-07-08T12:48:00Z"
+  },
+  {
+    "userId": 13,
+    "clubId": 1,
+    "text": "tiny PRs, big wins. keeping it mellow.",
+    "date": "2025-07-12T07:45:00Z"
+  },
+  {
+    "userId": 14,
+    "clubId": 1,
+    "text": "just pushed code with zero warnings. feels illegal.",
+    "date": "2025-07-12T07:34:00Z"
+  },
+  {
+    "userId": 14,
+    "clubId": 1,
+    "text": "sometimes staring at the screen *is* progress.",
+    "date": "2025-07-14T10:15:00Z"
+  },
+  {
+    "userId": 15,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-13T04:10:00Z"
+  },
+  {
+    "userId": 15,
+    "clubId": 1,
+    "text": "git commit -m 'vibing' \u2014 and it really was.",
+    "date": "2025-07-07T05:39:00Z"
+  },
+  {
+    "userId": 16,
+    "clubId": 1,
+    "text": "git commit -m 'vibing' \u2014 and it really was.",
+    "date": "2025-07-01T00:13:00Z"
+  },
+  {
+    "userId": 16,
+    "clubId": 1,
+    "text": "vim started making sense today. spiritual moment.",
+    "date": "2025-07-07T04:09:00Z"
+  },
+  {
+    "userId": 17,
+    "clubId": 1,
+    "text": "accidentally learned recursion by trying to make a joke work.",
+    "date": "2025-07-07T21:55:00Z"
+  },
+  {
+    "userId": 17,
+    "clubId": 1,
+    "text": "git commit -m 'vibing' \u2014 and it really was.",
+    "date": "2025-07-05T03:09:00Z"
+  },
+  {
+    "userId": 18,
+    "clubId": 1,
+    "text": "styled-components and vibes only today.",
+    "date": "2025-07-04T09:18:00Z"
+  },
+  {
+    "userId": 18,
+    "clubId": 1,
+    "text": "forgot a semicolon. learned a life lesson.",
+    "date": "2025-07-10T23:37:00Z"
+  },
+  {
+    "userId": 19,
+    "clubId": 1,
+    "text": "debugging with a friend feels like solving mysteries but softer.",
+    "date": "2025-07-11T21:28:00Z"
+  },
+  {
+    "userId": 19,
+    "clubId": 1,
+    "text": "pair coded with someone and we solved it in 20 min. ultimate cozy win.",
+    "date": "2025-07-13T21:04:00Z"
+  },
+  {
+    "userId": 20,
+    "clubId": 1,
+    "text": "forgot a semicolon. learned a life lesson.",
+    "date": "2025-07-14T10:32:00Z"
+  },
+  {
+    "userId": 20,
+    "clubId": 1,
+    "text": "vim started making sense today. spiritual moment.",
+    "date": "2025-07-10T13:13:00Z"
+  },
+  {
+    "userId": 21,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-02T23:52:00Z"
+  },
+  {
+    "userId": 21,
+    "clubId": 1,
+    "text": "tiny PRs, big wins. keeping it mellow.",
+    "date": "2025-07-11T20:46:00Z"
+  },
+  {
+    "userId": 22,
+    "clubId": 1,
+    "text": "vim started making sense today. spiritual moment.",
+    "date": "2025-07-08T17:22:00Z"
+  },
+  {
+    "userId": 22,
+    "clubId": 1,
+    "text": "tiny PRs, big wins. keeping it mellow.",
+    "date": "2025-07-07T00:57:00Z"
+  },
+  {
+    "userId": 23,
+    "clubId": 1,
+    "text": "forgot a semicolon. learned a life lesson.",
+    "date": "2025-07-01T23:36:00Z"
+  },
+  {
+    "userId": 23,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-02T23:27:00Z"
+  },
+  {
+    "userId": 24,
+    "clubId": 1,
+    "text": "debugging with a friend feels like solving mysteries but softer.",
+    "date": "2025-07-07T05:59:00Z"
+  },
+  {
+    "userId": 24,
+    "clubId": 1,
+    "text": "coding in the sun with iced coffee. unbeatable combo.",
+    "date": "2025-07-11T14:48:00Z"
+  },
+  {
+    "userId": 25,
+    "clubId": 1,
+    "text": "forgot a semicolon. learned a life lesson.",
+    "date": "2025-07-12T09:58:00Z"
+  },
+  {
+    "userId": 25,
+    "clubId": 1,
+    "text": "my code didn\u2019t break after refactor. am I a wizard?",
+    "date": "2025-07-03T11:45:00Z"
+  },
+  {
+    "userId": 26,
+    "clubId": 1,
+    "text": "learning typescript with lo-fi beats in the background. not bad at all.",
+    "date": "2025-07-01T01:38:00Z"
+  },
+  {
+    "userId": 26,
+    "clubId": 1,
+    "text": "styled-components and vibes only today.",
+    "date": "2025-07-15T10:53:00Z"
+  },
+  {
+    "userId": 27,
+    "clubId": 1,
+    "text": "still can\u2019t believe \u2018undefined is not a function\u2019 ruined my afternoon.",
+    "date": "2025-07-06T13:44:00Z"
+  },
+  {
+    "userId": 27,
+    "clubId": 1,
+    "text": "forgot a semicolon. learned a life lesson.",
+    "date": "2025-07-01T02:28:00Z"
+  },
+  {
+    "userId": 28,
+    "clubId": 1,
+    "text": "debugging with a friend feels like solving mysteries but softer.",
+    "date": "2025-07-03T13:44:00Z"
+  },
+  {
+    "userId": 28,
+    "clubId": 1,
+    "text": "git commit -m 'vibing' \u2014 and it really was.",
+    "date": "2025-07-02T07:06:00Z"
+  },
+  {
+    "userId": 29,
+    "clubId": 1,
+    "text": "pair coded with someone and we solved it in 20 min. ultimate cozy win.",
+    "date": "2025-07-14T10:38:00Z"
+  },
+  {
+    "userId": 29,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-09T23:34:00Z"
+  },
+  {
+    "userId": 30,
+    "clubId": 1,
+    "text": "coding in the sun with iced coffee. unbeatable combo.",
+    "date": "2025-07-12T20:07:00Z"
+  },
+  {
+    "userId": 30,
+    "clubId": 1,
+    "text": "sometimes staring at the screen *is* progress.",
+    "date": "2025-07-10T09:37:00Z"
+  },
+  {
+    "userId": 31,
+    "clubId": 1,
+    "text": "writing code with matcha and ambient rain sounds hits different.",
+    "date": "2025-07-12T22:56:00Z"
+  },
+  {
+    "userId": 31,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-08T18:29:00Z"
+  },
+  {
+    "userId": 32,
+    "clubId": 1,
+    "text": "git commit -m 'vibing' \u2014 and it really was.",
+    "date": "2025-07-15T17:03:00Z"
+  },
+  {
+    "userId": 32,
+    "clubId": 1,
+    "text": "my code didn\u2019t break after refactor. am I a wizard?",
+    "date": "2025-07-12T17:42:00Z"
+  },
+  {
+    "userId": 33,
+    "clubId": 1,
+    "text": "rediscovered how good vanilla JS can be. underrated chill.",
+    "date": "2025-07-01T18:10:00Z"
+  },
+  {
+    "userId": 33,
+    "clubId": 1,
+    "text": "docker finally working. time to vibe for 5 minutes before it breaks again.",
+    "date": "2025-07-13T01:07:00Z"
+  },
+  {
+    "userId": 34,
+    "clubId": 1,
+    "text": "pair coded with someone and we solved it in 20 min. ultimate cozy win.",
+    "date": "2025-07-09T15:14:00Z"
+  },
+  {
+    "userId": 34,
+    "clubId": 1,
+    "text": "docker finally working. time to vibe for 5 minutes before it breaks again.",
+    "date": "2025-07-10T01:20:00Z"
+  },
+  {
+    "userId": 35,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-08T19:58:00Z"
+  },
+  {
+    "userId": 35,
+    "clubId": 1,
+    "text": "still can\u2019t believe \u2018undefined is not a function\u2019 ruined my afternoon.",
+    "date": "2025-07-12T23:46:00Z"
+  },
+  {
+    "userId": 36,
+    "clubId": 1,
+    "text": "debugging with a friend feels like solving mysteries but softer.",
+    "date": "2025-07-01T04:19:00Z"
+  },
+  {
+    "userId": 36,
+    "clubId": 1,
+    "text": "styled-components and vibes only today.",
+    "date": "2025-07-08T00:55:00Z"
+  },
+  {
+    "userId": 37,
+    "clubId": 1,
+    "text": "morning bug fix + music = productive therapy session.",
+    "date": "2025-07-04T00:35:00Z"
+  },
+  {
+    "userId": 37,
+    "clubId": 1,
+    "text": "sometimes staring at the screen *is* progress.",
+    "date": "2025-07-14T14:04:00Z"
+  },
+  {
+    "userId": 38,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-05T23:41:00Z"
+  },
+  {
+    "userId": 38,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-04T03:12:00Z"
+  },
+  {
+    "userId": 39,
+    "clubId": 1,
+    "text": "git commit -m 'vibing' \u2014 and it really was.",
+    "date": "2025-07-12T16:52:00Z"
+  },
+  {
+    "userId": 39,
+    "clubId": 1,
+    "text": "code reviews are just love letters written in passive voice.",
+    "date": "2025-07-02T23:08:00Z"
+  },
+  {
+    "userId": 40,
+    "clubId": 1,
+    "text": "been writing the same function all day but it\u2019s chill. flow state unlocked.",
+    "date": "2025-07-01T19:54:00Z"
+  },
+  {
+    "userId": 40,
+    "clubId": 1,
+    "text": "debugging with a friend feels like solving mysteries but softer.",
+    "date": "2025-07-12T02:03:00Z"
+  },
+  {
+    "userId": 41,
+    "clubId": 1,
+    "text": "tiny PRs, big wins. keeping it mellow.",
+    "date": "2025-07-06T18:54:00Z"
+  },
+  {
+    "userId": 41,
+    "clubId": 1,
+    "text": "writing code with matcha and ambient rain sounds hits different.",
+    "date": "2025-07-15T21:31:00Z"
+  }
+]
