@@ -47,7 +47,7 @@ const data = {
   navClub: [
     {
       title: "Posts",
-      url: "#",
+      url: "/",
       icon: MessageSquareText,
       isActive: true,
     },
