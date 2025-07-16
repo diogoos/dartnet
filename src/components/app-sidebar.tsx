@@ -13,7 +13,7 @@ import {
 
 import { NavSection } from "@/components/nav-section"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { ClubSwitcher } from "@/components/club-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -21,6 +21,8 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import { useEffect, useState } from "react";
+import { Club } from "@prisma/client";
 
 // This is sample data.
 const data = {
@@ -78,10 +80,19 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const userId = 44; // temp set to me
+  const [clubs, setClubs] = useState<Club[]>([]);
+
+  useEffect(() => {
+    fetch(`/api/clubs/list?forUser=${userId}`)
+      .then(res => res.json())
+      .then(setClubs)
+  }, []);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        { clubs.length > 0 && <ClubSwitcher clubs={clubs} /> }
       </SidebarHeader>
       <SidebarContent>
         <NavSection section="My Club" items={data.navClub} />

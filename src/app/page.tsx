@@ -1,7 +1,6 @@
 "use client";
 
-import { AppSidebar } from "@/components/app-sidebar";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { PostCard } from "@/components/post-card";
@@ -19,6 +18,14 @@ export default function Home() {
       .then(setPosts);
   }, []);
 
+  const addPost = (post: PostWithAuthor) => {
+    // later add the POST request here, for now add to feed
+    setPosts([
+      post,
+      ...posts,
+    ])
+  }
+
   return <>
     <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
       <div className="flex items-center gap-2 px-4">
@@ -30,7 +37,7 @@ export default function Home() {
 
     <div className="flex flex-1 flex-col gap-4 p-4 pt-0 items-center">
       <main className="flex flex-col gap-6 lg:w-3xl">
-        <PostComposer onPostAction={() => {}} />
+        <PostComposer onPostAction={addPost} />
         {posts.map((post, idx) => (
           <PostCard key={idx} post={post} />
         ))}

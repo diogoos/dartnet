@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronsUpDown, Plus } from "lucide-react"
+import { ChevronsUpDown, Plus, Component } from "lucide-react"
 import Image from "next/image";
 
 import {
@@ -10,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -20,19 +19,15 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar"
 
-export function TeamSwitcher({
-  teams,
-}: {
-  teams: {
-    name: string
-    logo: React.ElementType | null,
-    imgLogo?: string,
-  }[]
+import { Club } from "@prisma/client";
+
+export function ClubSwitcher({ clubs }: {
+  clubs: Club[]
 }) {
   const { isMobile } = useSidebar()
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const [activeClub, setActiveClub] = React.useState(clubs[0])
 
-  if (!activeTeam) {
+  if (!activeClub) {
     return null
   }
 
@@ -46,19 +41,18 @@ export function TeamSwitcher({
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                { activeTeam.logo && <activeTeam.logo className="size-4" /> }
-                { activeTeam.imgLogo && (
+                { activeClub.img != null ? (
                   <Image
-                    src={activeTeam.imgLogo}
+                    src={activeClub.img}
                     width={32}
                     height={32}
                     className="h-full w-full rounded-lg object-cover"
-                    alt={`${activeTeam.name} logo`}
+                    alt={`${activeClub.name} logo`}
                   />
-                ) }
+                ) : <Component className="size-4" /> }
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeTeam.name}</span>
+                <span className="truncate font-medium">{activeClub.name}</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -72,26 +66,24 @@ export function TeamSwitcher({
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Clubs
             </DropdownMenuLabel>
-            {teams.map((team, index) => (
+            {clubs.map((team) => (
               <DropdownMenuItem
                 key={team.name}
-                onClick={() => setActiveTeam(team)}
+                onClick={() => setActiveClub(team)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  {team.logo && <team.logo className="size-3.5 shrink-0" /> }
-                  {team.imgLogo && (
+                  {team.img != null ? (
                     <Image
-                      src={team.imgLogo}
+                      src={team.img}
                       width={32}
                       height={32}
                       className="h-full w-full rounded-md object-cover"
                       alt={`${team.name} logo`}
                     />
-                  ) }
+                  ) : <Component className="size-3.5 shrink-0" /> }
                 </div>
                 {team.name}
-                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />

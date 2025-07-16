@@ -12,7 +12,7 @@ export const PostCard = ({ post }: { post: PostWithAuthor }) => {
       <Link href={`/profile/${author.id}`}>
         <div className="flex items-center gap-4">
           <Avatar>
-              {author.img != null && <AvatarImage src={author.img} alt={`${author.name}'s avatar`} /> }
+              {author.img == null ? <AvatarImage /> : <AvatarImage src={author.img} alt={`${author.name}'s avatar`} /> }
               <AvatarFallback>{author.name[0]}</AvatarFallback>
           </Avatar>
           <div className="text-sm font-medium">{author.name}</div>
