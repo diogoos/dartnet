@@ -82,17 +82,25 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const userId = 44; // temp set to me
   const [clubs, setClubs] = useState<Club[]>([]);
+  const [activeClub, setActiveClub] = useState<Club | null>(null);
 
   useEffect(() => {
     fetch(`/api/clubs/list?forUser=${userId}`)
       .then(res => res.json())
-      .then(setClubs)
+      .then((clubList) => {
+        setClubs(clubList);
+        setActiveClub(clubList[0]);
+      })
   }, []);
 
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        { clubs.length > 0 && <ClubSwitcher clubs={clubs} /> }
+        <ClubSwitcher
+          clubs={clubs}
+          activeClub={activeClub}
+          setClubAction={setActiveClub}
+        />
       </SidebarHeader>
       <SidebarContent>
         <NavSection section="My Club" items={data.navClub} />

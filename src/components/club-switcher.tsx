@@ -18,18 +18,34 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { Club } from "@prisma/client";
 
-export function ClubSwitcher({ clubs }: {
-  clubs: Club[]
+export function ClubSwitcher({ clubs, activeClub, setClubAction }: {
+  clubs: Club[],
+  activeClub: Club | null,
+  setClubAction: (club: Club) => void,
 }) {
   const { isMobile } = useSidebar()
-  const [activeClub, setActiveClub] = React.useState(clubs[0])
 
-  if (!activeClub) {
-    return null
-  }
+  const activeClubImage = (() => {
+    if (activeClub == null) {
+      return <Skeleton className="h-full w-full" />
+    }
+
+    if (activeClub.img == null) {
+      return <Component className="size-4" />
+    }
+
+    return <Image
+      src={activeClub.img}
+      width={32}
+      height={32}
+      className="h-full w-full rounded-lg object-cover"
+      alt={`${activeClub.name} logo`}
+    />
+  })();
 
   return (
     <SidebarMenu>
@@ -40,19 +56,14 @@ export function ClubSwitcher({ clubs }: {
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                { activeClub.img != null ? (
-                  <Image
-                    src={activeClub.img}
-                    width={32}
-                    height={32}
-                    className="h-full w-full rounded-lg object-cover"
-                    alt={`${activeClub.name} logo`}
-                  />
-                ) : <Component className="size-4" /> }
+              <div className="bg-sidebar-border text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                { activeClubImage }
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-medium">{activeClub.name}</span>
+                { activeClub == null ?
+                  <Skeleton className="h-[20px] w-auto" />
+                  : <span className="truncate font-medium">{activeClub.name}</span>
+                }
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -66,24 +77,24 @@ export function ClubSwitcher({ clubs }: {
             <DropdownMenuLabel className="text-muted-foreground text-xs">
               Clubs
             </DropdownMenuLabel>
-            {clubs.map((team) => (
+            {clubs.map((club) => (
               <DropdownMenuItem
-                key={team.name}
-                onClick={() => setActiveClub(team)}
+                key={club.name}
+                onClick={() => setClubAction(club)}
                 className="gap-2 p-2"
               >
                 <div className="flex size-6 items-center justify-center rounded-md border">
-                  {team.img != null ? (
+                  {club.img != null ? (
                     <Image
-                      src={team.img}
+                      src={club.img}
                       width={32}
                       height={32}
                       className="h-full w-full rounded-md object-cover"
-                      alt={`${team.name} logo`}
+                      alt={`${club.name} logo`}
                     />
                   ) : <Component className="size-3.5 shrink-0" /> }
                 </div>
-                {team.name}
+                {club.name}
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
