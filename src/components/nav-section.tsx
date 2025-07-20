@@ -7,8 +7,10 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
+  SidebarMenuItem
 } from "@/components/ui/sidebar"
+
+import Link from "next/link"
 
 export function NavSection({
   section,
@@ -34,9 +36,9 @@ export function NavSection({
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton tooltip={item.title} isActive={item.isActive}>
               {item.icon && <item.icon />}
-              <a href={item.url}>
+              <Link href={item.url}>
                 <span>{item.title}</span>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         ))}

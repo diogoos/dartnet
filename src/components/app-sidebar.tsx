@@ -5,12 +5,11 @@ import {
   AudioWaveform,
   Cog,
   Command,
-  Globe,
   MessageSquareText,
   Users,
-  Car
 } from "lucide-react"
 
+import { usePathname } from "next/navigation";
 import { NavSection } from "@/components/nav-section"
 import { NavUser } from "@/components/nav-user"
 import { ClubSwitcher } from "@/components/club-switcher"
@@ -21,7 +20,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { useEffect, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
 import { Club } from "@prisma/client";
 
 // This is sample data.
@@ -30,40 +29,6 @@ const data = {
     name: "Andy Kotz",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
-    {
-      name: "DALI Lab",
-      imgLogo: "/dali.jpeg",
-      logo: null,
-    },
-    {
-      name: "Brazil Society",
-      logo: Globe,
-    },
-    {
-      name: "Formula Racing",
-      logo: Car,
-    },
-  ],
-
-  navClub: [
-    {
-      title: "Posts",
-      url: "/",
-      icon: MessageSquareText,
-      isActive: true,
-    },
-    {
-      title: "Members",
-      url: "#",
-      icon: Users,
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Cog,
-    },
-  ],
 
   navPersonal: [
     {
@@ -84,6 +49,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const [clubs, setClubs] = useState<Club[]>([]);
   const [activeClub, setActiveClub] = useState<Club | null>(null);
 
+  const pathname = usePathname();
+  const clubNav = useMemo(() => {
+    return [
+      {
+        title: "Posts",
+        url: "/",
+        icon: MessageSquareText,
+        isActive: pathname === "/",
+      },
+      {
+        title: "Members",
+        url: "/members",
+        icon: Users,
+        isActive: pathname.startsWith("/members") || pathname.startsWith("/profile"),
+      },
+      {
+        title: "Settings",
+        url: "#",
+        icon: Cog,
+        isActive: false,
+      },
+    ]
+  }, [pathname]);
+
   useEffect(() => {
     fetch(`/api/clubs/list?forUser=${userId}`)
       .then(res => res.json())
@@ -103,7 +92,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         />
       </SidebarHeader>
       <SidebarContent>
-        <NavSection section="My Club" items={data.navClub} />
+        <NavSection section="My Club" items={clubNav} />
         <NavSection section="Personal" items={data.navPersonal} />
       </SidebarContent>
       <SidebarFooter>

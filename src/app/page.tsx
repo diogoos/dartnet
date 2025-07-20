@@ -8,6 +8,7 @@ import { PostWithAuthor } from "@/lib/post";
 import {useState, useEffect } from "react";
 import { PostComposer } from "@/components/post-composer";
 import {Skeleton} from "@/components/ui/skeleton";
+import {Breadcrumb, BreadcrumbPage, BreadcrumbList} from "@/components/ui/breadcrumb";
 
 export default function Home() {
   const clubId = 1;
@@ -36,7 +37,11 @@ export default function Home() {
       <div className="flex items-center gap-2 px-4">
         <SidebarTrigger className="-ml-1"/>
         <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4"/>
-        <Link href="">Posts</Link>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbPage>Posts</BreadcrumbPage>
+          </BreadcrumbList>
+        </Breadcrumb>
       </div>
     </header>
 
