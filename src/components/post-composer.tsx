@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react"
-import { PostWithAuthor } from "@/lib/post"
+import { PostWithAuthor } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 
 export function PostComposer({ onPostAction }: {

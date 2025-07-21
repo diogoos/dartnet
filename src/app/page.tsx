@@ -1,7 +1,7 @@
 "use client";
 
 import { PostCard } from "@/components/post-card";
-import { PostWithAuthor } from "@/lib/post";
+import { PostWithAuthor } from "@/lib/types";
 import {useState, useEffect } from "react";
 import { PostComposer } from "@/components/post-composer";
 import {Skeleton} from "@/components/ui/skeleton";

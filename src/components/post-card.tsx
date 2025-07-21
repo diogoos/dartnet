@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import moment from 'moment';
-import { PostWithAuthor } from "@/lib/post";
+import { PostWithAuthor } from "@/lib/types";
 import Link from "next/link"
 
 export const PostCard = ({ post }: { post: PostWithAuthor }) => {
