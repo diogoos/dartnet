@@ -1,20 +1,14 @@
-import {SidebarTrigger} from "@/components/ui/sidebar";
-import {Separator} from "@/components/ui/separator";
-import {Breadcrumb, BreadcrumbList, BreadcrumbPage} from "@/components/ui/breadcrumb";
+import { MembersGrid } from "@/components/members-grid"
+import { PageHeader } from "@/components/page-header";
 
 export default function MembersPage() {
   return <>
-    <header
-      className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-      <div className="flex items-center gap-2 px-4">
-        <SidebarTrigger className="-ml-1"/>
-        <Separator orientation="vertical" className="mr-2 data-[orientation=vertical]:h-4"/>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbPage>Members</BreadcrumbPage>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </div>
-    </header>
+    <PageHeader breadcrumbs={[
+      { href: "#", label: "Members"},
+    ]} />
+
+    <main>
+      <MembersGrid />
+    </main>
   </>
 }
