@@ -1,10 +1,11 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import {useEffect, useMemo, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
 import ActivityHeatmap from "@/components/activity-heatmap";
 import {Card} from "@/components/ui/card";
 import {PageHeader} from "@/components/page-header";
+import {ClubContext} from "@/components/app-body";
 
 export default function StatsPage(){
   const Map = useMemo(() => dynamic(
@@ -15,15 +16,18 @@ export default function StatsPage(){
     }
   ), [])
 
-  const clubId = 1
+  const club = useContext(ClubContext)
+
   const [count, setCount] = useState<{
     members: number, posts: number, postsToday: number
   } | null>(null);
   useEffect(() => {
-    fetch(`/api/clubs/${clubId}/stats/count`)
+    if (club == null) return
+
+    fetch(`/api/clubs/${club.id}/stats/count`)
       .then(res => res.json())
       .then(setCount)
-  }, [])
+  }, [club])
 
   return <>
     <PageHeader breadcrumbs={[

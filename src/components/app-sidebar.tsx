@@ -29,10 +29,12 @@ const data = {
   }
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({ activeClub, setClubAction }: {
+  activeClub: Club | null,
+  setClubAction: (club: Club) => void
+}) {
   const userId = 44; // temp set to me
   const [clubs, setClubs] = useState<Club[]>([]);
-  const [activeClub, setActiveClub] = useState<Club | null>(null);
 
   const pathname = usePathname();
   const clubNav = useMemo(() => {
@@ -63,17 +65,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       .then(res => res.json())
       .then((clubList) => {
         setClubs(clubList);
-        setActiveClub(clubList[0]);
+        setClubAction(clubList[0]);
       })
   }, []);
 
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <ClubSwitcher
           clubs={clubs}
           activeClub={activeClub}
-          setClubAction={setActiveClub}
+          setClubAction={setClubAction}
         />
       </SidebarHeader>
       <SidebarContent>

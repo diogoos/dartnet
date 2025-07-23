@@ -1,30 +1,11 @@
 "use client"
 
-import React, {useEffect} from "react";
+import {useState, useContext, useEffect} from "react";
 import moment from "moment";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/components/ui/tooltip";
+import {ClubContext} from "@/components/app-body";
 
 type HeatmapEntry = { date: string, heat: number }
-
-const fetchActivity = async () => {
-  const clubId = 1
-  const records: Record<string, number> = await fetch(`/api/clubs/${clubId}/stats/activity`).then(res => res.json())
-
-  const days = 365;
-  const heatmap: HeatmapEntry[] = [];
-
-  for (let i = 0; i < days; i++) {
-    const m = moment(new Date()).subtract(i, "days")
-    const dateStr = m.format("YYYY-MM-DD")
-
-    heatmap.push({
-      date: dateStr,
-      heat: records[dateStr] || 0, // 0–4 activity
-    });
-  }
-
-  return heatmap.reverse(); // chronological order
-}
 
 const colorScale = [
   "bg-gray-200", // 0
@@ -35,12 +16,34 @@ const colorScale = [
 ];
 
 export default function ActivityHeatmap() {
-  const [activity, setActivity] = React.useState<HeatmapEntry[]>([]);
+  const [activity, setActivity] = useState<HeatmapEntry[]>([]);
+  const club = useContext(ClubContext)
+
+  const fetchActivity = async () => {
+    if (club == null) return [];
+
+    const records: Record<string, number> = await fetch(`/api/clubs/${club.id}/stats/activity`).then(res => res.json())
+
+    const days = 365;
+    const heatmap: HeatmapEntry[] = [];
+
+    for (let i = 0; i < days; i++) {
+      const m = moment(new Date()).subtract(i, "days")
+      const dateStr = m.format("YYYY-MM-DD")
+
+      heatmap.push({
+        date: dateStr,
+        heat: records[dateStr] || 0, // 0–4 activity
+      });
+    }
+
+    return heatmap.reverse(); // chronological order
+  }
 
   useEffect(() => {
     fetchActivity()
       .then(setActivity)
-  }, []);
+  }, [fetchActivity]);
 
   const weeks = Array.from({ length: 53 }, (_, i) => i);
   const daysOfWeek = Array.from({ length: 7 }, (_, i) => i);

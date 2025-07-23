@@ -1,14 +1,16 @@
 "use client"
-import { useState } from "react"
+import {useContext, useState, FormEvent} from "react"
 import { PostWithAuthor } from "@/lib/types"
 import { Button } from "@/components/ui/button"
+import {ClubContext} from "@/components/app-body";
 
 export function PostComposer({ onPostAction }: {
   onPostAction: (newPost: PostWithAuthor) => void;
 }) {
+  const club = useContext(ClubContext);
   const [text, setText] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!text.trim()) return;
 
@@ -45,7 +47,7 @@ export function PostComposer({ onPostAction }: {
         type="submit"
         className="mt-2 px-4 py-1 text-sm rounded"
       >
-        Post to DALI Lab
+        Post { club != null && ` to ${club.name}` }
       </Button>
     </form>
   );

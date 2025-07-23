@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css';
 
@@ -9,6 +9,7 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 
 import { geocode } from "@/lib/geocode";
 import { cache as geocache } from "@/lib/geocode";
+import {ClubContext} from "@/components/app-body";
 
 type Location = {
   name: string;
@@ -18,7 +19,7 @@ type Location = {
 }
 
 export default function MembersMap(){
-  const clubId = 1;
+  const club = useContext(ClubContext);
   const [locations, setLocations] = useState<Location[]>([]);
 
   useEffect(() => {
@@ -27,7 +28,9 @@ export default function MembersMap(){
     const delay = (ms: number) => new Promise(res => setTimeout(res, ms));
 
     const fetchAndGeocode = async () => {
-      const res = await fetch(`/api/clubs/${clubId}/stats/locations`);
+      if (club == null) return
+
+      const res = await fetch(`/api/clubs/${club.id}/stats/locations`);
       const locations: string[] = await res.json();
 
       for (const str of locations) {
@@ -45,8 +48,8 @@ export default function MembersMap(){
       }
     }
 
-    fetchAndGeocode()
-  }, []);
+     fetchAndGeocode()
+  }, [club]);
 
   return (
     <div className="w-full h-[500px]">

@@ -2,24 +2,28 @@
 
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import {useContext, useEffect, useState} from "react";
 import { BasicUser } from "@/lib/types";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Skeleton} from "@/components/ui/skeleton";
+import {ClubContext} from "@/components/app-body";
 
 export function MembersGrid() {
-  const [loaded, setLoaded] = useState(false);
+  const club = useContext(ClubContext)
+  const [loading, setLoading] = useState(true);
   const [members, setMembers] = useState<BasicUser[]>([]);
-  const clubId = 1;
 
   useEffect(() => {
-    fetch(`/api/clubs/${clubId}/members`)
+    if (club == null) return
+
+    setLoading(true)
+    fetch(`/api/clubs/${club.id}/members`)
       .then(res => res.json())
       .then(setMembers)
-      .then(() => setLoaded(true));
-  }, [clubId]);
+      .then(() => setLoading(false));
+  }, [club]);
 
-  if (!loaded) {
+  if (loading) {
     return (
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-8 items-stretch pt-2">
         {
