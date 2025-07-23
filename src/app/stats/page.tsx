@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import { useMemo } from "react";
+import ActivityHeatmap from "@/components/activity-heatmap";
 
 export default function StatsPage(){
   const Map = useMemo(() => dynamic(
@@ -12,7 +13,8 @@ export default function StatsPage(){
     }
   ), [])
 
-  return (
+  return <div>
+    <ActivityHeatmap />
     <Map />
-  )
+  </div>
 }
