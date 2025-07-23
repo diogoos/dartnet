@@ -55,17 +55,17 @@ export default function ActivityHeatmap() {
 
   return (
     <div className="flex overflow-x-auto p-4">
-      <div className="grid grid-rows-7 grid-flow-col gap-1">
+      <div className="grid grid-rows-7 grid-flow-col gap-0.5">
         {grid.map((week, weekIdx) =>
           week.map((cell, dayIdx) => {
             if (cell.date == "hide") {
-              return <div key={`${weekIdx}-${dayIdx}`} className="w-3.5 h-3.5" aria-hidden={true}></div>
+              return <div key={`${weekIdx}-${dayIdx}`} className="w-3 h-3" aria-hidden={true}></div>
             }
 
             return <Tooltip key={`${weekIdx}-${dayIdx}`}>
               <TooltipTrigger asChild>
                 <div
-                  className={`w-3.5 h-3.5 rounded-sm ${colorScale[cell.heat]}`}
+                  className={`w-3 h-3 rounded-xs ${colorScale[cell.heat]}`}
                 />
               </TooltipTrigger>
               <TooltipContent>

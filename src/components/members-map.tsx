@@ -49,9 +49,9 @@ export default function MembersMap(){
   }, []);
 
   return (
-    <div style={{height: '500px', width: '800px'}}>
+    <div className="w-full h-[500px]">
       <MapContainer
-        style={{ height: '100%', width: '100%' }}
+        className="w-full h-full rounded-md"
         center={[20 , 0]} zoom={2} scrollWheelZoom={false} maxZoom={10}>
 
         <TileLayer
