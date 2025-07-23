@@ -6,6 +6,13 @@ const globalForPrisma = globalThis as unknown as {
 
 export const prisma =
   globalForPrisma.prisma ??
-  new PrismaClient();
+  new PrismaClient({
+    omit: {
+      user: {
+        password: true,
+        salt: true
+      }
+    }
+  });
 
 if (process.env.NODE_ENV === 'development') globalForPrisma.prisma = prisma;

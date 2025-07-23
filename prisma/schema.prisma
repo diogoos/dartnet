@@ -22,6 +22,10 @@ model User {
   tradition String
   img       String?
 
+  username String @unique
+  password String
+  salt     String
+
   clubs ClubMembership[]
   posts Post[]
 }

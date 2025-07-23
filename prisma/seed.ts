@@ -1,8 +1,27 @@
 import { PrismaClient } from '@prisma/client'
 import fs from 'fs'
 import path from 'path'
+import crypto from "node:crypto";
+import {pbkdf2Async} from "@noble/hashes/pbkdf2";
+import {sha512} from "@noble/hashes/sha2";
 
 const prisma = new PrismaClient()
+
+async function hashPassword(plaintextPassword: string): Promise<{ salt: string; hashedPassword: string }> {
+  const salt = crypto.randomBytes(16).toString("hex");
+
+  const encoder = new TextEncoder();
+  const passwordBytes = encoder.encode(plaintextPassword);
+  const saltBytes = encoder.encode(salt);
+
+  const derivedKey = await pbkdf2Async(sha512, passwordBytes, saltBytes, {
+    c: 210_000,
+    dkLen: 32
+  });
+
+  const hashedPassword = Array.from(derivedKey).map(b => b.toString(16).padStart(2, '0')).join('');
+  return { salt, hashedPassword }
+}
 
 interface ImportedProfile {
   name: string
@@ -56,8 +75,15 @@ async function main() {
     if (person.core) roles.push('Core')
     if (person.mentor) roles.push('Mentor')
 
+    // generate username & set pwd to 'dartmouth'
+    const username = person.name.replace(/ /g, '.').toLowerCase()
+    const { salt, hashedPassword } = await hashPassword("dartmouth")
+
     await prisma.user.create({
       data: {
+        username,
+        password: hashedPassword,
+        salt,
         name: person.name,
         year: isNaN(Number(person.year)) ? null : Number(person.year),
         roles,
@@ -82,8 +108,12 @@ async function main() {
   }
   console.log(`✅ Seeded ${importedProfiles.length} users.`)
 
+  const { salt, hashedPassword } = await hashPassword("dartmouth")
   await prisma.user.create({
     data: {
+      username: "diogo.silva",
+      password: hashedPassword,
+      salt,
       name: "Diogo Silva",
       year: 2028,
       roles: ["Developer"],
