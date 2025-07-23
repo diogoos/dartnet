@@ -2,9 +2,7 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
-  Cog,
-  Command,
+  ChartNoAxesCombined,
   MessageSquareText,
   Users,
 } from "lucide-react"
@@ -28,20 +26,7 @@ const data = {
   user: {
     name: "Andy Kotz",
     avatar: "/avatars/shadcn.jpg",
-  },
-
-  navPersonal: [
-    {
-      title: "Account",
-      url: "#",
-      icon: Command,
-    },
-    {
-      title: "Profile",
-      url: "#",
-      icon: AudioWaveform,
-    },
-  ],
+  }
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -62,13 +47,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         title: "Members",
         url: "/members",
         icon: Users,
-        isActive: pathname.startsWith("/members") || pathname.startsWith("/profile"),
+        isActive: pathname.startsWith("/members"),
       },
       {
-        title: "Settings",
-        url: "#",
-        icon: Cog,
-        isActive: false,
+        title: "Stats",
+        url: "/stats",
+        icon: ChartNoAxesCombined,
+        isActive: pathname.startsWith("/stats"),
       },
     ]
   }, [pathname]);
@@ -93,7 +78,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavSection section="My Club" items={clubNav} />
-        <NavSection section="Personal" items={data.navPersonal} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
