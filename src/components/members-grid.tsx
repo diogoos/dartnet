@@ -5,8 +5,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { BasicUser } from "@/lib/types";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export function MembersGrid() {
+  const [loaded, setLoaded] = useState(false);
   const [members, setMembers] = useState<BasicUser[]>([]);
   const clubId = 1;
 
@@ -14,7 +16,20 @@ export function MembersGrid() {
     fetch(`/api/clubs/${clubId}/members`)
       .then(res => res.json())
       .then(setMembers)
+      .then(() => setLoaded(true));
   }, [clubId]);
+
+  if (!loaded) {
+    return (
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-8 items-stretch pt-2">
+        {
+          Array(20).fill(null).map((_, i) => (
+            <Skeleton key={i} className="w-full" style={{ height: "10rem" }} />
+          ))
+        }
+      </div>
+    )
+  }
 
   return (
     <div
