@@ -7,7 +7,7 @@ import { sha512 } from "@noble/hashes/sha2";
 
 import { DefaultSession } from "next-auth";
 import { User as PrismaUser } from "@prisma/client";
-import {NextRequest, NextResponse} from "next/server";
+import { NextResponse} from "next/server";
 
 declare module "next-auth" {
   interface Session {
@@ -102,6 +102,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     }
   },
+
+  theme: {
+    colorScheme: "light",
+    brandColor: "oklch(52.7% .154 150.069)",
+    logo: "/logo.svg"
+  }
 })
 
 async function verifyUser(username: string, password: string) {
