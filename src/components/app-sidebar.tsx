@@ -58,15 +58,15 @@ export function AppSidebar({ activeClub, setClubAction }: {
     fetch(`/api/clubs/list`)
       .then(res => res.json())
       .then((clubList) => {
-        setClubs(clubList);
+        setClubs(clubList)
 
-        if (params.get('selectClub')) {
-          const newClub: Club = clubList.filter(c => (
-            c.id == params.get('selectClub')
-          ))[0]
+        const clubQueryString = params.get('selectClub')
+        if (clubQueryString) {
+          const clubQuery = parseInt(clubQueryString)
+          const newActiveClub = clubList.filter((c: Club) => ( c.id == clubQuery ))[0]
 
-          if (newClub) {
-            setClubAction(newClub);
+          if (newActiveClub) {
+            setClubAction(newActiveClub);
             router.replace(window.location.pathname);
             return
           }

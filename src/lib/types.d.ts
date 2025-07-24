@@ -14,7 +14,12 @@ const basicUser = Prisma.validator<Prisma.UserDefaultArgs>()({
 })
 export type BasicUser = Prisma.UserGetPayload<typeof basicUser>
 
-const clubWithMemberIds = Prisma.validator<Prisma.ClubDefaultArgs>({
+const clubWithMemberIds = Prisma.validator<Prisma.ClubDefaultArgs>()({
   include: { members: { select: { userId: true } } }
 });
 export type ClubWithMemberIds = Prisma.ClubGetPayload<typeof clubWithMemberIds>
+
+const userWithClubs = Prisma.validator<Prisma.UserDefaultArgs>()({
+  include: { clubs: { include: { club: true } } }
+})
+export type UserWithClubs = Prisma.UserGetPayload<typeof userWithClubs>

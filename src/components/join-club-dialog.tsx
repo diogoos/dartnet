@@ -1,10 +1,10 @@
 import {DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogClose} from "@/components/ui/dialog";
 import {useState, useEffect} from "react";
 import { useSession } from "next-auth/react"
-import { ClubWithMemberIds } from "@/lib/types";
-import { Club } from "@prisma/client";
+import { type ClubWithMemberIds } from "@/lib/types";
 import {redirect, RedirectType} from "next/navigation";
 import Image from "next/image"
+import {Skeleton} from "@/components/ui/skeleton";
 
 export default function JoinClubDialog() {
   const [clubs, setClubs] = useState<ClubWithMemberIds[]>([]);
@@ -16,7 +16,7 @@ export default function JoinClubDialog() {
       .then(setClubs)
   }, []);
 
-  const joinClubAction = (newClub: Club) => {
+  const joinClubAction = (newClub: ClubWithMemberIds) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { members, ...club } = newClub;
 
@@ -35,8 +35,6 @@ export default function JoinClubDialog() {
 
         redirect(`/?selectClub=${club.id}`, RedirectType.push)
       })
-
-    // console.log(newClub);
   }
 
   if (!session || !session.data?.user) return null;
@@ -56,7 +54,10 @@ export default function JoinClubDialog() {
           }).length > 0
 
           return <div key={club.id} className="bg-white rounded-lg overflow-hidden shadow-md">
-            <Image src={club.img ?? undefined} alt={`${club.name} logo`} width={512} height={512} className="h-32 w-full object-cover"/>
+            { club.img != null ?
+              <Image src={club.img} alt={`${club.name} logo`} width={512} height={512} className="h-32 w-full object-cover"/> :
+              <Skeleton className="h-32 w-full object-cover" />
+            }
 
             <div className="p-4 text-black">
               <h3 className="text-lg font-semibold">{club.name}</h3>
@@ -65,7 +66,7 @@ export default function JoinClubDialog() {
               <DialogClose asChild>
                 <button
                   disabled={joined}
-                  onClick={ () => joinClubAction(club as Club) }
+                  onClick={ () => joinClubAction(club) }
                   className={`mt-3 px-4 py-2 rounded-md text-white w-full ${
                     joined ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
                   }`}

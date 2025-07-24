@@ -39,7 +39,7 @@ export function MembersGrid() {
     <div
       className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 p-8 items-stretch pt-2">
       {members.map((member) => (
-        <Link href={`/src/app/(dashboard)/members/${member.id}`} key={member.id}>
+        <Link href={`/members/${member.id}`} key={member.id}>
           <Card className="w-full h-full transition-transform duration-200 ease-in-out hover:scale-[1.03]">
             <CardHeader className="flex flex-col items-center text-center gap-2">
               <Avatar className="w-12 h-12">
