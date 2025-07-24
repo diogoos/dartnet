@@ -7,7 +7,7 @@ import {
   Users,
 } from "lucide-react"
 
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { NavSection } from "@/components/nav-section"
 import { NavUser } from "@/components/nav-user"
 import { ClubSwitcher } from "@/components/club-switcher"
@@ -34,7 +34,7 @@ export function AppSidebar({ activeClub, setClubAction }: {
         title: "Posts",
         url: "/",
         icon: MessageSquareText,
-        isActive: pathname === "/",
+        isActive: pathname === "/" || pathname.startsWith("/home"),
       },
       {
         title: "Members",
@@ -51,14 +51,32 @@ export function AppSidebar({ activeClub, setClubAction }: {
     ]
   }, [pathname]);
 
+  const params = useSearchParams();
+  const router = useRouter();
+
   useEffect(() => {
     fetch(`/api/clubs/list`)
       .then(res => res.json())
       .then((clubList) => {
         setClubs(clubList);
-        setClubAction(clubList[0]);
+
+        if (params.get('selectClub')) {
+          const newClub: Club = clubList.filter(c => (
+            c.id == params.get('selectClub')
+          ))[0]
+
+          if (newClub) {
+            setClubAction(newClub);
+            router.replace(window.location.pathname);
+            return
+          }
+        }
+
+        if (activeClub == null) {
+          setClubAction(clubList[0]);
+        }
       })
-  }, [setClubAction]);
+  }, [setClubAction, params]);
 
   return (
     <Sidebar collapsible="icon">
