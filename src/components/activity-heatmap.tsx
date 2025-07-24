@@ -19,31 +19,31 @@ export default function ActivityHeatmap() {
   const [activity, setActivity] = useState<HeatmapEntry[]>([]);
   const club = useContext(ClubContext)
 
-  const fetchActivity = async () => {
-    if (club == null) return [];
+  useEffect(() => {
+    const fetchActivity = async () => {
+      if (club == null) return [];
 
-    const records: Record<string, number> = await fetch(`/api/clubs/${club.id}/stats/activity`).then(res => res.json())
+      const records: Record<string, number> = await fetch(`/api/clubs/${club.id}/stats/activity`).then(res => res.json())
 
-    const days = 365;
-    const heatmap: HeatmapEntry[] = [];
+      const days = 365;
+      const heatmap: HeatmapEntry[] = [];
 
-    for (let i = 0; i < days; i++) {
-      const m = moment(new Date()).subtract(i, "days")
-      const dateStr = m.format("YYYY-MM-DD")
+      for (let i = 0; i < days; i++) {
+        const m = moment(new Date()).subtract(i, "days")
+        const dateStr = m.format("YYYY-MM-DD")
 
-      heatmap.push({
-        date: dateStr,
-        heat: records[dateStr] || 0, // 0–4 activity
-      });
+        heatmap.push({
+          date: dateStr,
+          heat: records[dateStr] || 0, // 0–4 activity
+        });
+      }
+
+      return heatmap.reverse(); // chronological order
     }
 
-    return heatmap.reverse(); // chronological order
-  }
-
-  useEffect(() => {
     fetchActivity()
       .then(setActivity)
-  }, [fetchActivity]);
+  }, [club]);
 
   const weeks = Array.from({ length: 53 }, (_, i) => i);
   const daysOfWeek = Array.from({ length: 7 }, (_, i) => i);

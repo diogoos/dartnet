@@ -67,7 +67,7 @@ export function AppSidebar({ activeClub, setClubAction }: {
         setClubs(clubList);
         setClubAction(clubList[0]);
       })
-  }, []);
+  }, [setClubAction]);
 
   return (
     <Sidebar collapsible="icon">

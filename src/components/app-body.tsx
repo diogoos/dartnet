@@ -1,9 +1,10 @@
 "use client";
 
-import {createContext, ReactNode, useCallback, useState} from "react";
+import {createContext, ReactNode, useState} from "react";
 import {SidebarInset, SidebarProvider} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/app-sidebar";
 import { Club } from "@prisma/client";
+import {SessionProvider} from "next-auth/react";
 
 export const ClubContext = createContext<Club | null>(null);
 
@@ -13,16 +14,18 @@ export function AppBody({ children }: Readonly<{
   const [club, setClub] = useState<Club | null>(null);
 
   return (
-    <SidebarProvider>
-      <ClubContext value={club}>
-        <AppSidebar
-          activeClub={club}
-          setClubAction={setClub}
-        />
-        <SidebarInset>
-          {children}
-        </SidebarInset>
-      </ClubContext>
-    </SidebarProvider>
+    <SessionProvider>
+      <SidebarProvider>
+        <ClubContext value={club}>
+          <AppSidebar
+            activeClub={club}
+            setClubAction={setClub}
+          />
+          <SidebarInset>
+            {children}
+          </SidebarInset>
+        </ClubContext>
+      </SidebarProvider>
+    </SessionProvider>
   )
 }

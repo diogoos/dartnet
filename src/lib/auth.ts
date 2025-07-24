@@ -1,9 +1,32 @@
-import NextAuth from "next-auth"
+import NextAuth, {CredentialsSignin} from "next-auth"
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 
 import { pbkdf2Async } from "@noble/hashes/pbkdf2";
 import { sha512 } from "@noble/hashes/sha2";
+
+import { DefaultSession } from "next-auth";
+import { User as PrismaUser } from "@prisma/client";
+
+declare module "next-auth" {
+  interface Session {
+    user: PrismaUser & DefaultSession["user"]
+  }
+
+  interface User extends PrismaUser {
+    id: number
+    password?: string
+    salt?: string
+  }
+}
+
+class InvalidCredentials extends CredentialsSignin {
+  code= "invalid_credentials"
+}
+
+class MissingCredentials extends CredentialsSignin {
+  code = "missing_credentials"
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -20,28 +43,51 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           placeholder: "*****"
         }
       },
-      authorize: async (credentials) => {
+
+      authorize: async (
+        credentials: Partial<Record<"username" | "password", unknown>>
+      ) => {
         // write authorization code here
         if (!credentials?.username || !credentials?.password) {
-          throw new Error("Missing credentials");
+          throw new MissingCredentials()
         }
 
-        const user = await verifyUser(credentials.username, credentials.password);
+        const user = await verifyUser(credentials.username as string, credentials.password as string);
         if (!user) {
-          throw new Error("Invalid credentials");
+          throw new InvalidCredentials()
         }
 
-        return user;
-      },
-    })
+        return user
+      }
+    }),
   ],
 
   callbacks: {
     authorized: async ({ auth }) => {
       // Logged-in users are authenticated, otherwise redirect to login page
       return !!auth
+    },
+
+    session: ({ session, token }) => {
+      if (token.user) {
+        session.user = token.user as typeof session.user
+      }
+      return session
+    },
+
+    jwt: ({ token, user }) => {
+      if (user) {
+        token.user = {
+          id: user.id,
+          username: user.username,
+          name: user.name,
+          img: user.img
+        }
+      }
+
+      return token;
     }
-  }
+  },
 })
 
 async function verifyUser(username: string, password: string) {
