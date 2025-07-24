@@ -7,6 +7,7 @@ import { sha512 } from "@noble/hashes/sha2";
 
 import { DefaultSession } from "next-auth";
 import { User as PrismaUser } from "@prisma/client";
+import {NextRequest, NextResponse} from "next/server";
 
 declare module "next-auth" {
   interface Session {
@@ -66,7 +67,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
 
   callbacks: {
-    authorized: async ({ auth }) => {
+    authorized: async ({ request, auth }) => {
+      if (request.nextUrl.pathname === "/") {
+        if (!auth || !auth.user) {
+          return true
+        }
+
+        const url = request.nextUrl.clone()
+        url.pathname = "/home"
+        return NextResponse.rewrite(url)
+      }
+
       // Logged-in users are authenticated, otherwise redirect to login page
       return !!auth
     },

@@ -9,7 +9,7 @@ export const PostCard = ({ post }: { post: PostWithAuthor }) => {
 
   return (
     <div className="rounded-lg border bg-white p-4 shadow-sm">
-      <Link href={`/members/${author.id}`}>
+      <Link href={`/src/app/(dashboard)/members/${author.id}`}>
         <div className="flex items-center gap-4">
           <Avatar>
               {author.img == null ? <AvatarImage /> : <AvatarImage src={author.img} alt={`${author.name}'s avatar`} /> }
