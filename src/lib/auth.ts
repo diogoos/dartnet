@@ -14,7 +14,7 @@ declare module "next-auth" {
   }
 
   interface User extends PrismaUser {
-    id: number
+    id: string
     password?: string
     salt?: string
   }
@@ -57,7 +57,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           throw new InvalidCredentials()
         }
 
-        return user
+        return {
+          ...user,
+          id: String(user.id)
+        }
       }
     }),
   ],

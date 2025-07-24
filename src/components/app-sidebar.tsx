@@ -21,19 +21,10 @@ import {
 import {useEffect, useMemo, useState} from "react";
 import { Club } from "@prisma/client";
 
-// This is sample data.
-const data = {
-  user: {
-    name: "Andy Kotz",
-    avatar: "/avatars/shadcn.jpg",
-  }
-}
-
 export function AppSidebar({ activeClub, setClubAction }: {
   activeClub: Club | null,
   setClubAction: (club: Club) => void
 }) {
-  const userId = 44; // temp set to me
   const [clubs, setClubs] = useState<Club[]>([]);
 
   const pathname = usePathname();
@@ -61,7 +52,7 @@ export function AppSidebar({ activeClub, setClubAction }: {
   }, [pathname]);
 
   useEffect(() => {
-    fetch(`/api/clubs/list?forUser=${userId}`)
+    fetch(`/api/clubs/list`)
       .then(res => res.json())
       .then((clubList) => {
         setClubs(clubList);
@@ -82,7 +73,7 @@ export function AppSidebar({ activeClub, setClubAction }: {
         <NavSection section="My Club" items={clubNav} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

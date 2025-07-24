@@ -1,11 +1,13 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import { prisma } from "@/lib/prisma"
+import { auth } from "@/lib/auth"
 
-export async function GET(req: NextRequest) {
-  const { searchParams } = new URL(req.url)
-  const userId = searchParams.get("forUser")
+export async function GET() {
+  const session = await auth()
+  const userId = session?.user.id
+
   if (!userId) {
-    return NextResponse.json({ error: "No user ID" }, { status: 400 })
+    return NextResponse.json({ error: "Not logged in "}, { status: 403 })
   }
 
   const clubs = await prisma.club.findMany({

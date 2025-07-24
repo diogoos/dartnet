@@ -1,11 +1,10 @@
 "use client"
 import {useContext, useState, FormEvent} from "react"
-import { PostWithAuthor } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import {ClubContext} from "@/components/app-body";
 
 export function PostComposer({ onPostAction }: {
-  onPostAction: (newPost: PostWithAuthor) => void;
+  onPostAction: (postText: string) => void;
 }) {
   const club = useContext(ClubContext);
   const [text, setText] = useState("");
@@ -14,22 +13,7 @@ export function PostComposer({ onPostAction }: {
     e.preventDefault();
     if (!text.trim()) return;
 
-    // create a mock post to add to timeline
-    // (replace w/ POST later)
-    const newPost: PostWithAuthor = {
-      text: text.trim(),
-      author: {
-        id: -1,
-        name: "You",
-        img: null,
-      },
-      userId: -1,
-      clubId: -1,
-      date: new Date(),
-      id: -1
-    };
-
-    onPostAction(newPost);
+    onPostAction(text.trim());
     setText("");
   };
 
@@ -46,6 +30,7 @@ export function PostComposer({ onPostAction }: {
       <Button
         type="submit"
         className="mt-2 px-4 py-1 text-sm rounded"
+        disabled={club == null}
       >
         Post { club != null && ` to ${club.name}` }
       </Button>

@@ -22,10 +22,31 @@ export default function Home() {
       .then(() => { setLoading(false) })
   }, [club]);
 
-  const addPost = (post: PostWithAuthor) => {
-    // later add the POST request here, for now add to feed
+  const addPost = async (post: string) => {
+    if (club == null) return;
+
+    // send creation
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: post,
+        clubId: club.id,
+      })
+    })
+
+    if (!response.ok) {
+      console.error(`Failed to post`)
+      console.debug(response)
+      return
+    }
+
+    // add the new post to the feed
+    const newPost: PostWithAuthor = await response.json();
     setPosts([
-      post,
+      newPost,
       ...posts,
     ])
   }
