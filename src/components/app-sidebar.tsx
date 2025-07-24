@@ -43,7 +43,7 @@ export function AppSidebar({ activeClub, setClubAction }: {
         isActive: pathname.startsWith("/members"),
       },
       {
-        title: "Stats",
+        title: "Statistics",
         url: "/stats",
         icon: ChartNoAxesCombined,
         isActive: pathname.startsWith("/stats"),

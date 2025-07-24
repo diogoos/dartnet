@@ -33,14 +33,14 @@ export function NavSection({
       <SidebarGroupLabel>{section}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <SidebarMenuItem key={item.title}>
-            <SidebarMenuButton tooltip={item.title} isActive={item.isActive}>
-              {item.icon && <item.icon />}
-              <Link href={item.url}>
-                <span>{item.title}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          <Link key={item.title} href={item.url}>
+            <SidebarMenuItem>
+              <SidebarMenuButton tooltip={item.title} isActive={item.isActive}>
+                {item.icon && <item.icon />}
+                  <span>{item.title}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </Link>
         ))}
       </SidebarMenu>
     </SidebarGroup>
