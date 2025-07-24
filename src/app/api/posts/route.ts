@@ -22,6 +22,10 @@ export async function GET(req: NextRequest) {
           name: true,
           img: true
         }
+      },
+
+      likedBy: {
+        select: { id: true }
       }
     },
     orderBy: {
