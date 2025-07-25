@@ -85,6 +85,9 @@ export async function POST(req: NextRequest) {
           name: true,
           img: true
         }
+      },
+      likedBy: {
+        select: { id: true }
       }
     }
   })
