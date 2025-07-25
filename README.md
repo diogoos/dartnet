@@ -3,8 +3,8 @@ dartnet is a social platform built for members of the Dartmouth community to con
 clubs, shared interests, and campus events. Users can join clubs, create and interact with
 posts, view member profiles, and stay informed about club activities and statistics.
 
-## [Deployed](https://dartnet-git-main-diogoos-projects.vercel.app/)
-**[Visit the deployed instance of dartnet here.](https://dartnet-git-main-diogoos-projects.vercel.app/)**
+## [Deployed](https://dartnet.vercel.app/)
+**[Visit the deployed instance of dartnet here.](https://dartnet.vercel.app/)**
 > [!TIP]
 > 
 > Authentication is required as part of dartnet's design.
