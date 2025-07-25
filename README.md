@@ -1,3 +1,38 @@
+## Screenshots
+
+<table>
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src=".github/create-posts.png" /><br/>
+      <strong>Create Posts</strong>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src=".github/join-clubs.png" /><br/>
+      <strong>Join Clubs</strong>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src=".github/view-members-2.png"/><br/>
+      <strong>Browse Members</strong>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src=".github/view-members.png" /><br/>
+      <strong>View Profiles</strong>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src=".github/view-stats.png" /><br/>
+      <strong>Learn Club Stats</strong>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src=".github/manage-profile.png" width="400"/><br/>
+      <strong>Manage your account</strong>
+    </td>
+  </tr>
+</table>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
