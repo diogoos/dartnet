@@ -76,6 +76,7 @@ export function AppSidebar({ activeClub, setClubAction }: {
           setClubAction(clubList[0]);
         }
       })
+  // eslint-disable-next-line
   }, [setClubAction, params]);
 
   return (

@@ -11,7 +11,6 @@ import {useSession} from "next-auth/react";
 import {type UserWithClubs} from "@/lib/types"
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {PageHeader} from "@/components/page-header";
-import {redirect, RedirectType} from "next/navigation";
 
 export default function ProfilePage() {
   const [user, setUser] = useState<UserWithClubs | null>(null)
