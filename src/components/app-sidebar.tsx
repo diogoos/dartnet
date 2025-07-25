@@ -18,10 +18,10 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import {useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo, useState, Suspense} from "react";
 import { Club } from "@prisma/client";
 
-export function AppSidebar({ activeClub, setClubAction }: {
+function AppSidebarContent({ activeClub, setClubAction }: {
   activeClub: Club | null,
   setClubAction: (club: Club) => void
 }) {
@@ -97,4 +97,15 @@ export function AppSidebar({ activeClub, setClubAction }: {
       <SidebarRail />
     </Sidebar>
   )
+}
+
+export function AppSidebar(props: {
+  activeClub: Club | null,
+  setClubAction: (club: Club) => void
+}) {
+  return (
+    <Suspense fallback={<div>Loading sidebar...</div>}>
+      <AppSidebarContent {...props} />
+    </Suspense>
+  );
 }
